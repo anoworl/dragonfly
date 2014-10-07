@@ -85,7 +85,7 @@ module Dragonfly
         URI.parse(url)
       rescue URI::InvalidURIError
         begin
-          encoded_uri = Addressable::URI.parse(url).normalize.to_s
+          encoded_uri = Addressable::URI.encode(url)
           URI.parse(encoded_uri)
         rescue Addressable::URI::InvalidURIError => e
           raise BadURI, e.message
