@@ -41,6 +41,7 @@ module Dragonfly
             )
           else raise ArgumentError, "Didn't recognise the geometry string #{geometry}"
           end
+          args += ' -auto-orient -strip'
           content.process!(:convert, args, opts)
         end
 
