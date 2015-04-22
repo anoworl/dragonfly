@@ -79,7 +79,12 @@ module Dragonfly
     # @example "image/jpeg"
     # @return [String]
     def mime_type
-      app.mime_type_for(ext)
+      if app.mime_type_for(ext) != 'application/octet-stream'
+        app.mime_type_for(ext)
+      else
+        ext = self.analyse(:format)
+        'image/' + (ext == 'jpeg' ? 'jpg' : ext)
+      end
     end
 
     # Set the content using a pre-registered generator
