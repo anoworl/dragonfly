@@ -85,6 +85,7 @@ module Dragonfly
       params.merge!(stringify_keys(opts))
       params['job'] = job.serialize
       params['sha'] = job.sha if verify_urls
+      params['ext'] = File.extname(job.uid)[1..-1] if params['ext'].blank? and File.extname(job.uid).present?
       url = url_mapper.url_for(params)
       "#{host}#{path_prefix}#{url}"
     end
