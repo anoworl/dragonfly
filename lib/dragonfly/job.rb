@@ -64,6 +64,8 @@ module Dragonfly
             raise
           end
         end
+         # compatible with old version url
+        array.delete_if { |step_array| step_array.include?('auto_orient') || step_array.include?('strip') }
         from_a(array, app)
       end
 
